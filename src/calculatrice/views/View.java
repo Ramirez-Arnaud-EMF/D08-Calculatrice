@@ -1,7 +1,9 @@
-package views;
+package calculatrice.views;
 
 import com.sun.javafx.application.PlatformImpl;
-import ctrl.Controller;
+
+import calculatrice.ctrl.Controller;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,41 +14,51 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
- * Cette classe représente l'Ihm principale l'application MVC.
- * <p>
- * Cette Ihm est en JavaFx. Le code qu'on trouve ci-dessous est donc celle du
- * "contrôleur de notre vue", vue dont le contenu est lui exprimé séparément en
- * FXML.
- * </p>
+ * Classe représentant la vue de l'application MVC "Calculatrice" du module
+ * D400.
  *
- * @author EMF-Informatique
+ * @author <a href="mailto:mario.ramalho@edufr.ch">Mario Ramalho</a>
+ * @since 09.12.2023
+ * @version 1.0.0
  */
 public class View implements Initializable {
-    @FXML
-    private Button button;
-    @FXML
-    private Label label;
+
     @FXML
     private TextField inputA;
+
     @FXML
     private TextField inputB;
+
+    @FXML
+    private Label label;
+
+    @FXML
+    private RadioButton typeEntier;
 
     private Controller controller;
     private final String fxml;
 
+    /**
+     * Le constructeur de la classe View. Toujours initialiser TOUS les attributs !
+     * 
+     * @param controller le contrôleur de la vue
+     */
     public View(Controller controller) {
         // Si vous avez une erreur "Location is not set" c'est que ce chemin est faux.
-        fxml = "/views/view.fxml";
+        fxml = "/calculatrice/views/view.fxml";
         this.controller = controller;
     }
 
+    /**
+     * Méthode de démarrage de la vue.
+     */
     public void start() {
 
         /*
@@ -70,7 +82,7 @@ public class View implements Initializable {
                 Parent root = (Parent) fxmlLoader.load();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.setTitle("MVC-404 en JavaFX");
+                stage.setTitle("D08 - Calculatrice");
                 stage.show();
             } catch (IOException ex) {
                 System.out.println("Can't start the IHM because : " + ex);
@@ -80,25 +92,48 @@ public class View implements Initializable {
 
     }
 
+    /**
+     * Méthode appelée par JavaFX lorsque la vue est initialisée.
+     * Par défaut les champs de saisie sont initialisés avec les valeurs 2 et 5.
+     *
+     * @param url l'URL de la vue
+     * @param rb les ressources de la vue
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inputA.setText("2");
         inputB.setText("5");
     }
 
+    /**
+     * Méthode appelée par la vue lorsque l'utilisateur clique sur le bouton "+".
+     * Cette méthode appelle le contrôleur pour effectuer l'opération.
+     *
+     * @param event l'événement de clic sur le bouton "+"
+     */
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        controller.additionne(Integer.parseInt(inputA.getText()), Integer.parseInt(inputB.getText()));
+    void handlePlusAction(ActionEvent event) {
+        controller.additionne(inputA.getText(), inputB.getText(), typeEntier.isSelected());
     }
 
-    public void afficheVert(String message) {
-        label.setStyle("-fx-text-fill: green;");
-        label.setText(message);
+    /**
+     * Méthode appelée par la vue lorsque l'utilisateur clique sur le bouton "-".
+     * Cette méthode appelle le contrôleur pour effectuer l'opération.
+     *
+     * @param event l'événement de clic sur le bouton "-"
+     */
+    @FXML
+    void handleMinusAction(ActionEvent event) {
+        controller.soustrait(inputA.getText(), inputB.getText(), typeEntier.isSelected());
     }
 
-    public void afficheBleu(String message) {
-        label.setStyle("-fx-text-fill: blue;");
-        label.setText(message);
+    /**
+     * Méthode appelée par le contrôleur pour afficher le résultat dans la vue.
+     *
+     * @param valeur la valeur à afficher
+     */
+    public void affiche(String valeur) {
+        label.setText(valeur);
     }
 
 }
