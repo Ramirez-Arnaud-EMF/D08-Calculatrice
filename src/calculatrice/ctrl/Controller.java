@@ -43,7 +43,7 @@ public class Controller {
      * @param isEntier true si les opérandes sont des entiers, false si ce sont des réels
      */
     public void additionne(String a, String b, boolean isEntier) {
-
+        // VOTRE CODE ICI...
     }
 
     /**
@@ -58,6 +58,6 @@ public class Controller {
      * @param isEntier true si les opérandes sont des entiers, false si ce sont des réels
      */
     public void soustrait(String a, String b, boolean isEntier) {
-
+        // VOTRE CODE ICI...
     }
 }
