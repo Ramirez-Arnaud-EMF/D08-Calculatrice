@@ -50,7 +50,7 @@ Application ..> Controller : utilise
 ```
 
 ## Javadoc
-Vous pouvez cliquer sur [ce lien pour obtenir la JavaDoc en HTML](javadoc/index.html) de l'application **Calculatrice**.
+La Javadoc des deux méthodes `additionne()` et `soustrait()` de la classe `Controller` sont disponible pour vous aider.
 
 
 ## RESTITUTION :
