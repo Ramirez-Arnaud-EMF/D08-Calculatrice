@@ -39,9 +39,9 @@ class View {
 }
 class ServiceMath {
    +ServiceMath()
-   -additionne(int a, int b) int
-   -additionne(double a, double b) double
-   -soustrait(int a, int b) int
+   +additionne(int a, int b) int
+   +additionne(double a, double b) double
+   +soustrait(int a, int b) int
    +soustrait(double a, double b) double
 }
 Controller "1" o--> "0..n" View : view
