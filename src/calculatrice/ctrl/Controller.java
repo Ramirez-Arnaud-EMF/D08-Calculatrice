@@ -13,14 +13,12 @@ import calculatrice.views.View;
 public class Controller {
 
     private final View view;
-    private final ServiceMath serviceMath;
-
     /**
      * Le constructeur de la classe Controller. Toujours initialiser TOUS les attributs !
      */
     public Controller() {
         view = new View(this);
-        serviceMath = new ServiceMath();
+        new ServiceMath();
     }
 
     /**
@@ -43,7 +41,20 @@ public class Controller {
      * @param isEntier true si les opérandes sont des entiers, false si ce sont des réels
      */
     public void additionne(String a, String b, boolean isEntier) {
-        // VOTRE CODE ICI...
+        double number1 = Double.parseDouble(a);
+        double number2 = Double.parseDouble(b);
+        isEntier = true;
+
+        double result = number1 + number2;
+
+        if (result < 0) {
+            isEntier = false;
+        }
+
+        String finalResult = Double.toString(result);
+
+
+        view.affiche(finalResult);
     }
 
     /**
@@ -58,6 +69,19 @@ public class Controller {
      * @param isEntier true si les opérandes sont des entiers, false si ce sont des réels
      */
     public void soustrait(String a, String b, boolean isEntier) {
-        // VOTRE CODE ICI...
+        double number1 = Double.parseDouble(a);
+        double number2 = Double.parseDouble(b);
+        isEntier = true;
+
+        double result = number1 - number2;
+
+        if (result < 0) {
+            isEntier = false;
+        }
+
+        String finalResult = Double.toString(result);
+
+
+        view.affiche(finalResult);
     }
 }
