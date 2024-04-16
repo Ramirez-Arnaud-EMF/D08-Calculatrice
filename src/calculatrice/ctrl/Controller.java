@@ -81,7 +81,7 @@ public class Controller {
 
         String finalResult = Double.toString(result);
 
-
+  
         view.affiche(finalResult);
     }
 }
